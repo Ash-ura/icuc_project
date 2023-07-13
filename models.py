@@ -20,7 +20,7 @@ class InstanceMixin:
 
 # Database Models
 class User(UserMixin, db.Model, InstanceMixin):
-    __tablename__ = 'User'
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
@@ -28,7 +28,7 @@ class User(UserMixin, db.Model, InstanceMixin):
 
 
 class Member(db.Model, InstanceMixin):
-    __tablename__ = 'Member'
+    __tablename__ = 'member'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     firstname = db.Column(db.String(100), nullable=False)
     othernames = db.Column(db.String(100), nullable=False)
@@ -50,16 +50,16 @@ class Member(db.Model, InstanceMixin):
 
 
 class Contribution(db.Model, InstanceMixin):
-    __tablename__ = 'Contribution'
+    __tablename__ = 'contribution'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    member_id = db.Column(db.Integer, db.ForeignKey("Member.id"), nullable=False)
+    member_id = db.Column(db.Integer, db.ForeignKey("member.id"), nullable=False)
     amount = db.Column(db.Float, nullable=False)
     contribution_type = db.Column(db.String(20), nullable=False)
     timestamp = db.Column(
         db.DateTime, nullable=False, default=db.func.current_timestamp()
     )
 
-    member = db.relationship("Member", backref=db.backref("contributions"))
+    member = db.relationship("member", backref=db.backref("contributions"))
 
     def to_dict(self):
         return {
