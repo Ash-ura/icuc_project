@@ -5,8 +5,6 @@ import subprocess
 
 
 
-status, output = subprocess.getstatusoutput(CurlUrl)
-
 app = Flask(__name__)
 app.config[
     "SQLALCHEMY_DATABASE_URI"
