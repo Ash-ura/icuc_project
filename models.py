@@ -59,7 +59,7 @@ class Contribution(db.Model, InstanceMixin):
         db.DateTime, nullable=False, default=db.func.current_timestamp()
     )
 
-    member = db.relationship("member", backref=db.backref("contributions"))
+    member = db.relationship("Member", backref=db.backref("contributions"))
 
     def to_dict(self):
         return {
