@@ -52,7 +52,7 @@ class Member(db.Model, InstanceMixin):
 class Contribution(db.Model, InstanceMixin):
     __tablename__ = 'contribution'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    member_id = db.Column(db.Integer, db.ForeignKey("public.member.id"), nullable=False)
+    member_id = db.Column(db.Integer, db.ForeignKey("member.id"), nullable=False)
     amount = db.Column(db.Float, nullable=False)
     contribution_type = db.Column(db.String(20), nullable=False)
     timestamp = db.Column(
