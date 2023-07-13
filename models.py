@@ -20,7 +20,7 @@ class InstanceMixin:
 
 # Database Models
 class User(UserMixin, db.Model, InstanceMixin):
-    __tablename__ = 'public'.'user'
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
@@ -28,7 +28,7 @@ class User(UserMixin, db.Model, InstanceMixin):
 
 
 class Member(db.Model, InstanceMixin):
-    __tablename__ = 'public'.'member'
+    __tablename__ = 'member'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     firstname = db.Column(db.String(100), nullable=False)
     othernames = db.Column(db.String(100), nullable=False)
@@ -50,7 +50,7 @@ class Member(db.Model, InstanceMixin):
 
 
 class Contribution(db.Model, InstanceMixin):
-    __tablename__ = 'public'.'contribution'
+    __tablename__ = 'contribution'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     member_id = db.Column(db.Integer, db.ForeignKey("public.member.id"), nullable=False)
     amount = db.Column(db.Float, nullable=False)
