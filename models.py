@@ -68,7 +68,7 @@ class Contribution(db.Model, InstanceMixin):
             "id": self.id,
             "member_id": self.member_id,
             "firstname": self.firstname,
-            "othernames": self.othernames
+            "othernames": self.othernames,
             "amount": self.amount,
             "contribution_type": self.contribution_type,
             "timestamp": self.timestamp,
