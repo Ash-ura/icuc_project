@@ -97,6 +97,8 @@ def create_contribution():
 
     contribution = Contribution(
         member=member,
+        firstname=data["firstname"],
+        othernames=data["othernames"],
         amount=data["amount"],
         contribution_type=data["contribution_type"],
     )
