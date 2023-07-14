@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { baseUrl } from '../api/api';
+import moment from 'moment';
+import Loader from '../shared/loader';
+import Nodata from '../shared/Nodata';
 
 const Contributions = () => {
   const [contributions, setContributions] = useState([]);
-
+  const [loading,setLoading] = useState(true);
   useEffect(() => {
     const fetchContributions = async () => {
       try {
         const response = await baseUrl.get('/contributions');
         console.log('sd');
         setContributions(response.data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
+        setLoading(false)
       }
     };
 
@@ -21,7 +25,9 @@ const Contributions = () => {
 
   return (
     <div className='container px-4'>
-      <h3 className='mt-4 '>Contributions</h3>
+      {loading ? ( <Loader />) :(<><h3 className='mt-4 '>Contributions</h3>
+      
+      {contributions.length > 0 ? (
       <table className='table table-striped table-hover'>
         <thead className='table-dark'>
           <tr>
@@ -41,11 +47,17 @@ const Contributions = () => {
               <td>{contribution.othernames}</td>
               <td>{contribution.amount}</td>
               <td>{contribution.contribution_type}</td>
-              <td>{contribution.timestamp}</td>
+              <td>{moment(contribution.timestamp).format('MMMM Do YYYY') }</td>
             </tr>
           ))}
         </tbody>
       </table>
+       ) : ( <Nodata />
+       ) }
+      </>
+      
+      )
+      }
     </div>
   );
 };
