@@ -37,8 +37,8 @@ const Contributions = () => {
           {contributions.map((contribution) => (
             <tr key={contribution.id}>
               <td>{contribution.id}</td>
-              <td>{contribution.firstname}</td>
               <td>{contribution.othernames}</td>
+              <td>{contribution.firstname}</td>
               <td>{contribution.amount}</td>
               <td>{contribution.contribution_type}</td>
               <td>{contribution.timestamp}</td>
