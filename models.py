@@ -53,6 +53,8 @@ class Contribution(db.Model, InstanceMixin):
     __tablename__ = 'contribution'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     member_id = db.Column(db.Integer, db.ForeignKey("member.id"), nullable=False)
+    firstname = db.Column(db.String(100), nullable=False)
+    othernames = db.Column(db.String(100), nullable=False)
     amount = db.Column(db.Float, nullable=False)
     contribution_type = db.Column(db.String(20), nullable=False)
     timestamp = db.Column(
@@ -65,6 +67,8 @@ class Contribution(db.Model, InstanceMixin):
         return {
             "id": self.id,
             "member_id": self.member_id,
+            "firstname": self.firstname,
+            "othernames": self.othernames
             "amount": self.amount,
             "contribution_type": self.contribution_type,
             "timestamp": self.timestamp,
