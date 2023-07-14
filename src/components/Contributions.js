@@ -26,17 +26,19 @@ const Contributions = () => {
         <thead className='table-dark'>
           <tr>
             <th>ID</th>
-            <th>Member ID</th>
+            <th>Other names</th>
+            <th>Firstname</th>
             <th>Amount</th>
             <th>Type</th>
-            <th>Timestamp</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>
           {contributions.map((contribution) => (
             <tr key={contribution.id}>
               <td>{contribution.id}</td>
-              <td>{contribution.member_id}</td>
+              <td>{contribution.firstname}</td>
+              <td>{contribution.othernames}</td>
               <td>{contribution.amount}</td>
               <td>{contribution.contribution_type}</td>
               <td>{contribution.timestamp}</td>
