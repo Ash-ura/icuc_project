@@ -35,8 +35,8 @@ const Members = () => {
           {members.map((member) => (
             <tr key={member.id}>
               <td>{member.id}</td>
-              <td>{contribution.othernames}</td>
-              <td>{contribution.firstname}</td>
+              <td>{member.othernames}</td>
+              <td>{member.firstname}</td>
               <td>{member.email}</td>
               <td>{member.phone}</td>
               <td>{member.address}</td>
