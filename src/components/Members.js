@@ -18,13 +18,14 @@ const Members = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Members</h2>
-      <table>
-        <thead>
+    <div className='container px-4'>
+      <h3 className='mt-4 '>Members</h3>
+      <table className='table table-striped table-hover'>
+        <thead className='table-dark'>
           <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>Other names</th>
+            <th>Firstname</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
@@ -34,7 +35,8 @@ const Members = () => {
           {members.map((member) => (
             <tr key={member.id}>
               <td>{member.id}</td>
-              <td>{member.name}</td>
+              <td>{member.othernames}</td>
+              <td>{member.firstname}</td>
               <td>{member.email}</td>
               <td>{member.phone}</td>
               <td>{member.address}</td>
