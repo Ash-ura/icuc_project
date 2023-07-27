@@ -12,7 +12,6 @@ const Login = () => {
     try {
       const response = await axios.post('/login', { username, password });
       if (response.status === 200) {
-        console.log('data');
         // history.push('/dashboard');
       }
     } catch (error) {

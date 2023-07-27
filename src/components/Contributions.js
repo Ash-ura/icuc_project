@@ -25,15 +25,23 @@ const Contributions = () => {
 
   return (
     <div className='container px-4'>
-      {loading ? ( <Loader />) :(<><h3 className='mt-4 '>Contributions</h3>
+      {loading ? ( <Loader />) :(<>
+      <div className='d-flex  align-items-center justify-content-between'>
+      <h3 className='mt-4  '>Contributions</h3>
+        <div className='d-flex align-items-center'>
+          <input type='text' className='form-control mr-1'  placeholder='Search name...' />
+          <button className='btn btn-outline-info text-nowrap '>
+             New Contributions </button>
+        </div>
+      </div>
+
       
       {contributions.length > 0 ? (
       <table className='table table-striped table-hover'>
         <thead className='table-dark'>
           <tr>
             <th>ID</th>
-            <th>Other names</th>
-            <th>Firstname</th>
+            <th>Name </th>
             <th>Amount</th>
             <th>Type</th>
             <th>Date</th>
@@ -43,8 +51,7 @@ const Contributions = () => {
           {contributions.map((contribution) => (
             <tr key={contribution.id}>
               <td>{contribution.id}</td>
-              <td>{contribution.othernames}</td>
-              <td>{contribution.firstname}</td>
+              <td>{contribution.firstname}   {contribution.othernames} </td>
               <td>{contribution.amount}</td>
               <td>{contribution.contribution_type}</td>
               <td>{moment(contribution.timestamp).format('MMMM Do YYYY') }</td>
