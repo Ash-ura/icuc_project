@@ -10,6 +10,8 @@ const AddContributionModal = ({ isOpen, closeModal, fetchContributions }) => {
     contribution_type: '',
   });
 
+  const [showM,setshowM] = useState(true)
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewContribution((prevContribution) => ({
@@ -40,7 +42,7 @@ const AddContributionModal = ({ isOpen, closeModal, fetchContributions }) => {
 
   return (
     <Modal
-      show={true}
+      show={showM}
       onHide={closeModal}
       contentLabel="Add Contribution Modal"
     >
