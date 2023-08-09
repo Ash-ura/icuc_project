@@ -32,7 +32,7 @@ const Contributions = () => {
   };
 
   const closeModal = () => {
-    setModal(false);
+    setModalIsOpen(false);
   };
 
   const fetchContributions = async () => {
