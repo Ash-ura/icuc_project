@@ -3,6 +3,7 @@ import { baseUrl } from '../api/api';
 import moment from 'moment';
 import Loader from '../shared/loader';
 import Nodata from '../shared/Nodata';
+import AddContributionModal from './AddContributionModal';
 
 const Contributions = () => {
   const [contributions, setContributions] = useState([]);
@@ -30,7 +31,8 @@ const Contributions = () => {
       <h3 className='mt-4  '>Contributions</h3>
         <div className='d-flex align-items-center'>
           <input type='text' className='form-control mr-1'  placeholder='Search name...' />
-          <button className='btn btn-outline-info text-nowrap '>
+          <button className='btn btn-outline-info text-nowrap '
+                  onClick={openModal}>
              New Contributions </button>
         </div>
       </div>
@@ -61,6 +63,11 @@ const Contributions = () => {
       </table>
        ) : ( <Nodata />
        ) }
+      <AddContributionModal
+            isOpen={modalIsOpen}
+            closeModal={closeModal}
+            fetchContributions={fetchContributions}
+          />
       </>
       
       )
