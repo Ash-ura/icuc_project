@@ -6,6 +6,7 @@ import Nodata from '../shared/Nodata';
 
 const Contributions = () => {
   const [contributions, setContributions] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   const [loading,setLoading] = useState(true);
   useEffect(() => {
     const fetchContributions = async () => {
@@ -22,18 +23,35 @@ const Contributions = () => {
 
     fetchContributions();
   }, []);
+  
+  const searchContent = (e) =>{
+    e.preventDefault();
+    setSearchInput(e.target.value);
+  }
+
+  if (searchInput.length > 0) {
+    console.log(contributions);
+    contributions.filter((data) => {
+    return data.firstname.includes(searchInput)
+}); 
+}
 
   return (
     <div className='container px-4'>
       {loading ? ( <Loader />) :(<>
+      <div className='card mt-5 rounded-5 mb-2 shadow'>
+      <div className='card-body'>
+        
+
       <div className='d-flex  align-items-center justify-content-between'>
       <h3 className='mt-4  '>Contributions</h3>
         <div className='d-flex align-items-center'>
-          <input type='text' className='form-control mr-1'  placeholder='Search name...' />
+          <input type='text' className='form-control mr-1'  onChange={searchContent} value={searchInput} placeholder='Search name...' />
           <button className='btn btn-outline-info text-nowrap '>
              New Contributions </button>
         </div>
       </div>
+      </div></div>
 
       
       {contributions.length > 0 ? (
@@ -48,7 +66,7 @@ const Contributions = () => {
           </tr>
         </thead>
         <tbody>
-          {contributions.map((contribution) => (
+          {contributions.map((contribution,index) => (
             <tr key={contribution.id}>
               <td>{contribution.id}</td>
               <td>{contribution.firstname}   {contribution.othernames} </td>

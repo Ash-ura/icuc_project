@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { baseUrl } from '../api/api';
 import Loader from '../shared/loader';
-import Nodata from '../shared/Nodata';
+// import Nodata from '../shared/Nodata';
 const Members = () => {
   const [members, setMembers] = useState([]);
   const [loading,setLoading] = useState(true);
