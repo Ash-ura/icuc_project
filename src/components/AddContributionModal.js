@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 
-const AddContributionModal = ({ isOpen, closeModal, fetchContributions }) => {
+const AddContributionModal = (props) => {
   const [newContribution, setNewContribution] = useState({
     firstname: '',
     othernames: '',

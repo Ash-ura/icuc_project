@@ -9,7 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 const Contributions = () => {
   const [contributions, setContributions] = useState([]);
   const [loading,setLoading] = useState(true);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(true);
   useEffect(() => {
     const fetchContributions = async () => {
       try {
