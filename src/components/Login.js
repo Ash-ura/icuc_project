@@ -10,7 +10,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/login', { username, password });
+      const response = await baseUrl.post('/login', { username, password });
       if (response.status === 200) {
         // history.push('/dashboard');
       }
