@@ -24,6 +24,23 @@ const Contributions = () => {
     fetchContributions();
   }, []);
 
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const fetchContributions = async () => {
+    try {
+      const response = await axios.get('/contributions');
+      setContributions(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   return (
     <div className='container px-4'>
       {loading ? ( <Loader />) :(<>
