@@ -26,6 +26,7 @@ const Contributions = () => {
   }, []);
 
   const openModal = () => {
+    console.log('Opening modal');
     setModalIsOpen(true);
   };
 
