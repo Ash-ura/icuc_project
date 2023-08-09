@@ -4,6 +4,7 @@ import moment from 'moment';
 import Loader from '../shared/loader';
 import Nodata from '../shared/Nodata';
 import AddContributionModal from './AddContributionModal';
+import Modal from 'react-bootstrap/Modal';
 
 const Contributions = () => {
   const [contributions, setContributions] = useState([]);
