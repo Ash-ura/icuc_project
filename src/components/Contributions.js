@@ -3,11 +3,14 @@ import { baseUrl } from '../api/api';
 import moment from 'moment';
 import Loader from '../shared/loader';
 import Nodata from '../shared/Nodata';
+import AddContributionModal from './AddContributionModal';
+import Modal from 'react-bootstrap/Modal';
 
 const Contributions = () => {
   const [contributions, setContributions] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [loading,setLoading] = useState(true);
+  const [modalIsOpen, setModalIsOpen] = useState(true);
   useEffect(() => {
     const fetchContributions = async () => {
       try {
@@ -36,6 +39,24 @@ const Contributions = () => {
 }); 
 }
 
+  const openModal = () => {
+    console.log('Opening modal');
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const fetchContributions = async () => {
+    try {
+      const response = await baseUrl.get('/contributions');
+      setContributions(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   return (
     <div className='container px-4'>
       {loading ? ( <Loader />) :(<>
@@ -46,8 +67,9 @@ const Contributions = () => {
       <div className='d-flex  align-items-center justify-content-between'>
       <h3 className='mt-4  '>Contributions</h3>
         <div className='d-flex align-items-center'>
-          <input type='text' className='form-control mr-1'  onChange={searchContent} value={searchInput} placeholder='Search name...' />
-          <button className='btn btn-outline-info text-nowrap '>
+          <input type='text' className='form-control mr-1'  placeholder='Search name...' />
+          <button className='btn btn-outline-info text-nowrap '
+                  onClick={openModal}>
              New Contributions </button>
         </div>
       </div>
@@ -79,10 +101,15 @@ const Contributions = () => {
       </table>
        ) : ( <Nodata />
        ) }
+      <AddContributionModal
+            show={modalIsOpen}
+            closeModal={closeModal}
+            fetchContributions={fetchContributions}
+          />
       </>
       
       )
-      }
+      }++
     </div>
   );
 };
