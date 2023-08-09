@@ -26,8 +26,8 @@ const AddContributionModal = (props) => {
     try {
       const response = await axios.post('/contributions', newContribution);
       if (response.status === 201) {
-        closeModal();
-        fetchContributions();
+        // closeModal();
+        // fetchContributions();
         setNewContribution({
           firstname: '',
           othernames: '',
@@ -43,7 +43,7 @@ const AddContributionModal = (props) => {
   return (
     <Modal
       show={showM}
-      onHide={closeModal}
+      onHide={props.closeModal()}
       contentLabel="Add Contribution Modal"
     >
       <h2>Add Contribution</h2>
@@ -81,7 +81,7 @@ const AddContributionModal = (props) => {
         />
 
         <button type="submit">Add</button>
-        <button onClick={closeModal}>Cancel</button>
+        <button onClick={props.closeModal()}>Cancel</button>
       </form>
     </Modal>
   );
