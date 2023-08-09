@@ -32,7 +32,7 @@ const Contributions = () => {
   };
 
   const closeModal = () => {
-    setModalIsOpen(false);
+    setModal(false);
   };
 
   const fetchContributions = async () => {
@@ -84,7 +84,7 @@ const Contributions = () => {
        ) : ( <Nodata />
        ) }
       <AddContributionModal
-            isOpen={modalIsOpen}
+            show={modalIsOpen}
             closeModal={closeModal}
             fetchContributions={fetchContributions}
           />
