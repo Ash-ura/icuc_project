@@ -40,8 +40,8 @@ const AddContributionModal = ({ isOpen, closeModal, fetchContributions }) => {
 
   return (
     <Modal
-      isOpen={isOpen}
-      onRequestClose={closeModal}
+      show={isOpen}
+      onHide={closeModal}
       contentLabel="Add Contribution Modal"
     >
       <h2>Add Contribution</h2>
