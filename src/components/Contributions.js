@@ -9,15 +9,6 @@ const Contributions = () => {
   const [contributions, setContributions] = useState([]);
   const [loading,setLoading] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-  
   useEffect(() => {
     const fetchContributions = async () => {
       try {
@@ -33,6 +24,23 @@ const Contributions = () => {
 
     fetchContributions();
   }, []);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const fetchContributions = async () => {
+    try {
+      const response = await baseUrl.get('/contributions');
+      setContributions(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   
   return (
     <div className='container px-4'>
