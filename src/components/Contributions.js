@@ -4,18 +4,18 @@ import moment from 'moment';
 import Loader from '../shared/loader';
 import Nodata from '../shared/Nodata';
 import AddContributionModal from './AddContributionModal';
-import Modal from 'react-bootstrap/Modal';
+// import Modal from 'react-bootstrap/Modal';
 
 const Contributions = () => {
   const [contributions, setContributions] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [loading,setLoading] = useState(true);
-  const [modalIsOpen, setModalIsOpen] = useState(true);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   useEffect(() => {
     const fetchContributions = async () => {
       try {
         const response = await baseUrl.get('/contributions');
-        console.log('sd');
         setContributions(response.data);
         setLoading(false);
       } catch (error) {
@@ -30,14 +30,11 @@ const Contributions = () => {
   const searchContent = (e) =>{
     e.preventDefault();
     setSearchInput(e.target.value);
+    if (searchInput.length > 0) {
+      contributions.filter((data) =>   {return data.firstname && data.firstname.includes(searchInput)}); 
+      console.log('after',contributions);
+    }
   }
-
-  if (searchInput.length > 0) {
-    console.log(contributions);
-    contributions.filter((data) => {
-    return data.firstname.includes(searchInput)
-}); 
-}
 
   const openModal = () => {
     console.log('Opening modal');
@@ -67,7 +64,7 @@ const Contributions = () => {
       <div className='d-flex  align-items-center justify-content-between'>
       <h3 className='mt-4  '>Contributions</h3>
         <div className='d-flex align-items-center'>
-          <input type='text' className='form-control mr-1'  placeholder='Search name...' />
+          <input type='text' className='form-control mr-1' onInput={searchContent} placeholder='Search name...' />
           <button className='btn btn-outline-info text-nowrap '
                   onClick={openModal}>
              New Contributions </button>
@@ -101,16 +98,18 @@ const Contributions = () => {
       </table>
        ) : ( <Nodata />
        ) }
-      <AddContributionModal
-            show={modalIsOpen}
-            closeModal={closeModal}
-            fetchContributions={fetchContributions}
-          />
       </>
-      
       )
-      }++
+      }
+     <>
+     {modalIsOpen}
+     <AddContributionModal
+     show={modalIsOpen}
+     closeModal={closeModal}
+     fetchContributions={fetchContributions}/>
+     </>
     </div>
+  
   );
 };
 

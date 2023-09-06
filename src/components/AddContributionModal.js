@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 
 const AddContributionModal = (props) => {
+  console.log(props);
   const [newContribution, setNewContribution] = useState({
     firstname: '',
     othernames: '',
@@ -10,7 +11,12 @@ const AddContributionModal = (props) => {
     contribution_type: '',
   });
 
-  const [showM,setshowM] = useState(true)
+  const [showM,setshowM] = useState(false)
+  useEffect(() => {
+    console.log('passed');
+      setshowM(props.state)
+  }, [props.state]);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
